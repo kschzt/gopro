@@ -1,1 +1,2 @@
-exports.Camera = require('./camera').Camera
+exports.Camera = require('./lib/camera').Camera
+

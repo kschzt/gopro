@@ -1,6 +1,6 @@
 {
   "name": "gopro",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "API for controlling GoPro Hero 3 series cameras",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "when": "~2.1.0",
-    "request": "~2.21.0"
+    "request": "~2.21.0",
+    "cheerio": "~0.11.0"
   },
   "devDependencies": {
     "mocha": "~1.9.0"

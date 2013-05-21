@@ -7,11 +7,7 @@ var cam = new Camera('10.5.5.9', 'jambikassu')
 cam
 .powerOn()
 .then(function() {
-	return poll(
-		cam.status.bind(cam),
-		500,
-		function(status) { return status.ready }
-	)
+	return cam.whenReady()
 	.then(function() {
 		return cam.startBeeping()
 	})
