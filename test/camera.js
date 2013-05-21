@@ -43,12 +43,6 @@ describe('Camera', function() {
 		.deleteAll().then(done)
 	})
 
-	it('can retrieve ', function(done) {
-		new Camera(ip, pw,
-			shouldMatchUrl(root+'DA?t='+pw))
-		.deleteAll().then(done)
-	})
-
 })
 
 
