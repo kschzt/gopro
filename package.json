@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha"
   },
-  "repository": "",
+  "repository": "https://github.com/kschzt/gopro",
   "author": "kschzt@gmail.com",
   "license": "MIT",
   "dependencies": {
@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "mocha": "~1.9.0"
-  }
+  },
+  "keywords": [
+	"gopro", "hero", "camera", "api", "remote"
+  ]
 }
