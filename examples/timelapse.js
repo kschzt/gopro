@@ -14,10 +14,10 @@ function sleep(ms) {
 function snap() {
 	return camera.startCapture()
 	.then(function() {
-		return sleep(600)
-		.then(function() {
-			return camera.stopCapture()
-		})
+		return sleep(2000)
+	})
+	.then(function() {
+		return camera.stopCapture()
 	})
 }
 
@@ -28,14 +28,19 @@ function getImage(fromPath, toPath) {
 		var dfd = when.defer()
 		var out = fs.createWriteStream(toPath)
 		out.on('error', dfd.reject.bind(dfd))
-
-		stream.pipe(out)
-		stream.on('error', dfd.reject.bind(dfd))
+		out.on('end', function() {
+			console.log('end')
+		})
+		out.on('close', function() {
+			console.log('close')
+		})
 		out.on('finish', function() {
 			console.log('done retrieving image',fromPath, toPath)
 			dfd.resolve()
 		})
-		return dfd
+		stream.pipe(out)
+		stream.on('error', dfd.reject.bind(dfd))
+		return dfd.promise
 	})
 }
 
@@ -55,19 +60,30 @@ function mirror(fromPath, toPath) {
 function snapGetAndDelete() {
 	return snap()
 	.then(function() {
-		return sleep(500)
-	})
-	.then(function() {
 		return mirror('/DCIM', process.cwd())
 	})
 	.then(function() {
-		return camera.erase()
+		return camera.deleteLast()
 	})
 }
 
-snapGetAndDelete()
-	.otherwise(function(e) {
-		console.error(e.stack || e)
-		throw e
-	})
+var interval = 10000
 
+function loop() {
+	var tstart = Date.now()
+
+	snapGetAndDelete()
+		.then(function() {
+			var tend = Date.now()
+			var tleft = interval - (tend-tstart)
+			console.log('tleft', tleft)
+			setTimeout(loop, tleft)
+		})
+		.otherwise(function(e) {
+			clearInterval(interval)
+			console.error(e.stack || e)
+			throw e
+		})
+}
+
+loop()

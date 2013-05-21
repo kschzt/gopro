@@ -1,6 +1,6 @@
 {
   "name": "gopro",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "API for controlling GoPro Hero 3 series cameras",
   "main": "index.js",
   "scripts": {

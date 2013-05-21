@@ -1,6 +1,6 @@
 var when = require('when')
 var poll = require('when/poll')
-var Camera = require('../camera').Camera
+var Camera = require('../index').Camera
 
 var cam = new Camera('10.5.5.9', 'jambikassu')
 

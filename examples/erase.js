@@ -1,4 +1,4 @@
-var Camera = require('../camera').Camera
+var Camera = require('../index').Camera
 
 new Camera('10.5.5.9', 'jambikassu')
 .erase()
